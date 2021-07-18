@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 
 
-class Parser:
+class Parser():
     def __init__(self, false_tag, true_tag):
         self.false_tag = false_tag
         self.true_tag = true_tag

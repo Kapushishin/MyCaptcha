@@ -1,4 +1,5 @@
-from parser import Parser
+from GoogleParser import Parser
 
-print(Parser.find_true_links())
+img_links = Parser('Молоко','Кефир')
+print(img_links.find_true_links())
 
