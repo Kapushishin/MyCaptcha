@@ -1,6 +1,8 @@
 <MyCaptcha>:
     button_attempt: button_attempt
     button_reset: button_reset
+    image1: image1
+    button1: button1
     cols: 1
     rows: 3
     Label:
@@ -13,14 +15,44 @@
     GridLayout:
         cols: 2
         rows: 2
+        padding: 10
+        spacing: 2
         Button:
-            text: '1'
+            id: button1
+            on_press: root.click_holder()
+            AsyncImage:
+                id: image1
+                source: root.random_link()
+                center_x: self.parent.center_x
+                center_y: self.parent.center_y
+                allow_stretch: True
         Button:
-            text: '2'
+            id: button2
+            on_press: root.click_holder()
+            AsyncImage:
+                id: image2
+                source: root.random_link()
+                center_x: self.parent.center_x
+                center_y: self.parent.center_y
+                allow_stretch: True
         Button:
-            text: '3'
+            id: button3
+            on_press: root.click_holder()
+            AsyncImage:
+                id: image3
+                source: root.random_link()
+                center_x: self.parent.center_x
+                center_y: self.parent.center_y
+                allow_stretch: True
         Button:
-            text: '4'
+            id: button4
+            on_press: root.click_holder()
+            AsyncImage:
+                id: image4
+                source: root.random_link()
+                center_x: self.parent.center_x
+                center_y: self.parent.center_y
+                allow_stretch: True
     Label:
         size_hint: 1, .25
         Button:
@@ -33,6 +65,7 @@
             background_normal: ''
             background_color: .51, .88, .67, 1
             pos: 170, 10
+            on_press: root.press_button_attempt()
         Button:
             id: button_reset
             text: 'Reset'
