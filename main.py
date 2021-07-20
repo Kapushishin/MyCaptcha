@@ -11,15 +11,23 @@ Builder.load_file('WinForm.kv')
 from kivy.core.window import Window
 Window.clearcolor = (.92, .92, .96, 1)
 
+
 class MyCaptcha(GridLayout):
-    def random_link(self):
+    def random_link():
         img_links = Parser('Котик', 'Кефир')
         imgs = img_links.find_false_links() + [img_links.find_true_links()]
-        self.true_link = img_links.find_true_links()
-        link = imgs[random.randint(0,3)]
-        imgs.remove(link)
-        return link
+        random.shuffle(imgs)
+        #self.true_link = img_links.find_true_links()
+        return imgs
 
+    imgs = random_link()
+
+    """def find_link(self, imgs):
+        link = imgs[random.randint(0, len(imgs))]
+        imgs.remove(link)
+        print(imgs)
+        return link
+"""
     def click_holder(self):
         pass
 
@@ -30,9 +38,11 @@ class MyCaptcha(GridLayout):
     def press_button_reset(self):
         pass
 
+
 class MyApp(App):
     def build(self):
         return MyCaptcha()
+
 
 if __name__ == '__main__':
     MyApp().run()
