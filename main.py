@@ -23,6 +23,7 @@ class MyCaptcha(GridLayout):
         self.true_link = object_of_parser.find_true_links()
         self.imgs = object_of_parser.find_false_links() + [object_of_parser.find_true_links()]
         random.shuffle(self.imgs)
+        self.label_theme.text = self.theme[1]
         self.input_images()
 
     def input_images(self):
@@ -32,30 +33,44 @@ class MyCaptcha(GridLayout):
         self.image4.source = self.imgs[3]
 
     def themes(self):
-        epic_list_of_themes = [["Молоко", "Кефир"],
-                               ["Курица", "Индейка"],
-                               ["Кошкодевочка", "Джоджо"],
-                               ["Водичка", "Аква"]]
+        epic_list_of_themes = [["Milk", "Kefir"],
+                               ["Turkey (bird)", "Hen"],
+                               ["Neko chan", "JoJo"],
+                               ["Water", "Aqua"],
+                               ["Raccoon", "Possum"],
+                               ["Cat", "Bread"],
+                               ["Harvest mouse", "Gaming mouse"],
+                               ["Telephone", "Smartphone"],
+                               ["Moon", "Sun"],
+                               ["Strawberry", "Gooseberry"],
+                               ["Cartoon", "Anime"],
+                               ["Pen", "Pencil"],
+                               ["Wolf", "Dog"]]
         random.shuffle(epic_list_of_themes)
         return epic_list_of_themes[0]
 
-    def click_holder(self, button):
+    def click_holder(self, button, image):
         self.button1.background_color = [1, 1, 1, 1]
         self.button2.background_color = [1, 1, 1, 1]
         self.button3.background_color = [1, 1, 1, 1]
         self.button4.background_color = [1, 1, 1, 1]
         button.background_color = [.51, .88, .67, 1]
-        return button
+        self.image = image
 
     def press_button_attempt(self):
-        if self.image1.source == self.true_link:
-            return print('Дя')
+        if self.image.source == self.true_link:
+            self.label_head.text = 'Congratulations! You are not a robot!'
+            self.label_head.color = [.16, .71, .39, 1]
+            self.label_theme.text = ''
         else:
-            return print('Неть')
+            self.label_head.text = 'Wrong! Are you a robot?'
+            self.label_head.color = [.76, .08, .08, 1]
+            self.label_theme.text = ''
 
     def press_button_reset(self):
-        pass
-
+        self.generate_imgs()
+        self.label_head.text = 'Select image with'
+        self.label_head.color = [0, 0, 0, 1]
 
 class MyApp(App):
     def build(self):
