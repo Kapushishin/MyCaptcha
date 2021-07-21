@@ -13,27 +13,45 @@ Window.clearcolor = (.92, .92, .96, 1)
 
 
 class MyCaptcha(GridLayout):
-    def random_link():
-        img_links = Parser('Котик', 'Кефир')
-        imgs = img_links.find_false_links() + [img_links.find_true_links()]
-        random.shuffle(imgs)
-        #self.true_link = img_links.find_true_links()
-        return imgs
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.generate_imgs()
 
-    imgs = random_link()
+    def generate_imgs(self):
+        self.theme = self.themes()
+        object_of_parser = Parser(self.theme)
+        self.true_link = object_of_parser.find_true_links()
+        self.imgs = object_of_parser.find_false_links() + [object_of_parser.find_true_links()]
+        random.shuffle(self.imgs)
+        self.input_images()
 
-    """def find_link(self, imgs):
-        link = imgs[random.randint(0, len(imgs))]
-        imgs.remove(link)
-        print(imgs)
-        return link
-"""
-    def click_holder(self):
-        pass
+    def input_images(self):
+        self.image1.source = self.imgs[0]
+        self.image2.source = self.imgs[1]
+        self.image3.source = self.imgs[2]
+        self.image4.source = self.imgs[3]
+
+    def themes(self):
+        epic_list_of_themes = [["Молоко", "Кефир"],
+                               ["Курица", "Индейка"],
+                               ["Кошкодевочка", "Джоджо"],
+                               ["Водичка", "Аква"]]
+        random.shuffle(epic_list_of_themes)
+        return epic_list_of_themes[0]
+
+    def click_holder(self, button):
+        self.button1.background_color = [1, 1, 1, 1]
+        self.button2.background_color = [1, 1, 1, 1]
+        self.button3.background_color = [1, 1, 1, 1]
+        self.button4.background_color = [1, 1, 1, 1]
+        button.background_color = [.51, .88, .67, 1]
+        return button
 
     def press_button_attempt(self):
         if self.image1.source == self.true_link:
-            return print('123')
+            return print('Дя')
+        else:
+            return print('Неть')
 
     def press_button_reset(self):
         pass

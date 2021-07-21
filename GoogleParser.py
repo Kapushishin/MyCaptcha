@@ -3,9 +3,9 @@ from bs4 import BeautifulSoup
 
 
 class Parser():
-    def __init__(self, false_tag, true_tag):
-        self.false_tag = false_tag
-        self.true_tag = true_tag
+    def __init__(self, tags):
+        self.false_tag = tags[0]
+        self.true_tag = tags[1]
 
     def find_false_links(self):
         search_link = "https://www.google.ru/search?q="+self.false_tag+"&newwindow=1&source=lnms&tbm=isch&sa=X&ved=2ahUKEwiE-8D2wOzxAhUql4sKHZTDDisQ_AUoAXoECAIQAw&biw=1920&bih=964"
