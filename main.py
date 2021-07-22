@@ -11,7 +11,6 @@ Builder.load_file('WinForm.kv')
 from kivy.core.window import Window
 Window.clearcolor = (.92, .92, .96, 1)
 
-
 class MyCaptcha(GridLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -75,7 +74,6 @@ class MyCaptcha(GridLayout):
 class MyApp(App):
     def build(self):
         return MyCaptcha()
-
 
 if __name__ == '__main__':
     MyApp().run()
